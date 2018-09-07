@@ -10,8 +10,7 @@ import logging
 import configparser
 from random import randint
 import subprocess
-#version = subprocess.check_output(["git", "describe"]).strip()
-version = "v0.0.1"
+version = subprocess.check_output(["git", "describe"]).strip()
 
 # Leggo il file di configurazione
 cfg = configparser.RawConfigParser()
