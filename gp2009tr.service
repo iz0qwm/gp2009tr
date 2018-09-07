@@ -1,0 +1,13 @@
+[Unit]
+Description=DAPNET <-> GP2009TR transmitter
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/gp2009tr/gp2009tr.py &
+WorkingDirectory=/opt/gp2009tr/
+User=root
+
+[Install]
+WantedBy=multi-user.target
+
