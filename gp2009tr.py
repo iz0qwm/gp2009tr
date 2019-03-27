@@ -1,4 +1,11 @@
 #!/usr/bin/python
+#title           :gp2009tr.py
+#description     :This script will check for DAPNET messages and send it to the remote Work folder
+#author		 :Raffaello, IZ0QWM
+#date            :20180908
+#version         :0.1   
+#usage		 :bash install-gp2009tr.sh
+#notes           :Translation of remarks by Joep, PD1AEF
 import websocket
 import json
 import string
@@ -10,9 +17,9 @@ import logging
 import configparser
 from random import randint
 import subprocess
-version = subprocess.check_output(["git", "describe"]).strip()
 
-# Leggo il file di configurazione
+
+# Read the configuration file
 cfg = configparser.RawConfigParser()
 try:
         #attempt to read the config file config.cfg
@@ -23,7 +30,7 @@ except:
         print(os.path.basename(__file__) + " could not find / read config file")
         sys.exit(0)
 
-# Leggo la posizione del log file
+# Read location of the log file
 logfile = cfg.get('misc', 'logfile')
 
 #logging.basicConfig(filename='gp2009tr.log',level=logging.INFO) # level=10
@@ -34,9 +41,9 @@ handler.setFormatter(logformat)
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
-# Leggo le informazioni per DAPNET
+# Read info from DAPNET
 transmitterws = cfg.get('dapnet','transmitterws')
-# Leggo le informazioni per inviare messaggi
+# Read info for messages to send
 messagetx = cfg.get('misc','message')
 
 try:
@@ -56,14 +63,14 @@ def on_message(ws, message):
         left,sep,right = string_message.partition(prev_mittente)
         destinatario_virgola = right[:7]
         destinatario = destinatario_virgola.split(',')[0]
-        #print destinatario
+        #print recepient RIC
         prima,messaggio = string_message.split('data:')
-        #print messaggio
+        #print message
         clean1_messaggio = messaggio.replace("\" }']", "")
         clean2_messaggio = clean1_messaggio.replace(" \"", "")
-        #print clean1_messaggio
-        #print clean2_messaggio
-        logger.info('gp2009tr_trx %s engaged...', version)
+        #print clean1_message
+        #print clean2_message
+        #logger.info('gp2009tr_trx %s engaged...', version)
         #
         logger.info("RIC: %s - Messaggio: %s", destinatario, clean2_messaggio)
         file = open(messagetx,"w")
