@@ -1,27 +1,27 @@
 # gp2009tr
 Interface GP2009TR Pocsag transmitter for DAPNET
 
-## Requisiti
-- Trasmettitore GP2009TR http://www.witoptech.com/product-detail/pager-transmitter-pager-repeater/
-- Software Windows in dotazione **Goupin Pager Message Transmitter Server system**
-- Software Unipager 
+## Requirements
+- Transmitter GP2009TR http://www.witoptech.com/product-detail/pager-transmitter-pager-repeater/
+- Windows Software from GP2009TR **Goupin Pager Message Transmitter Server system**
+- Unipager Software 
 
-## Funzionamento
-Il software se vede un file nella cartella __Work__ formattato in questo modo:
+## Running
+The software looks for a file in the directory __Work__ formatted like this:
 
  
-        nome: call00.txt
+        name: call00.txt
         
         ADDRESS
         0220124
-        Testo del messaggio
+        Text of the message
 
-Invierà un messaggio al RIC 0220124 contenente "Testo del messaggio"  
-Lo script gp2009tr.py legge via websocket i messaggi da un Unipager e crea il file per il software
+The software will send a message to the RIC 0220124 containing "Text of the message"  
+The script gp2009tr.py reads via websocket the messages coming from Unipager and creates the file for the software
 
-## Installazione 
-- Installare il software _Goupin_ su una macchina Windows e collegare il trasmettitore GP2009TR
-- Installare il software Unipager e selezionare l'interfaccia Dummy
-- Modificare il file gp2009tr.cfg in modo da puntare alle giuste directory ed in particolare alla directory Work del
-software Windows (share di SAMBA e shared folder di VmWare se Unipager gira su un Debian sotto VmWare)
-- Eseguire ./gp2009tr.py & (o eseguirlo come servizio)
+## Installation 
+- Install the software _Goupin_ on a Windows and connect the transmitter GP2009TR
+- Install the software Unipager and select the Dummy interface
+- Modify the file gp2009tr.cfg configuring the right directories and pay attention that Work is the directory shared by
+Windows (SAMBA share or VMWare shared folder if Unipager runs on Debian under VmWare)
+- Run ./gp2009tr.py & (or run like service)
