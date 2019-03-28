@@ -4,7 +4,6 @@
 #author		 :Raffaello, IZ0QWM
 #date            :20180908
 #version         :0.1   
-#usage		 :bash install-gp2009tr.sh
 #notes           :Translation of remarks by Joep, PD1AEF
 import websocket
 import json
